@@ -1,75 +1,118 @@
+const pickedUi = document.getElementById("picked");
+const enemyPickedUi = document.getElementById("enemyPicked");
+const worlDisplay = document.getElementById("worl");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const enemyScoreDisplay = document.getElementById("enemyScoreDisplay");
+const worlScreen = document.getElementById("worlScreen");
+const picker = document.querySelectorAll("button");
+
+let playerScore = 0;
+let opponentScore = 0;
+
+picker.forEach((button) => {
+    button.addEventListener("click", () => {
+        const picked = getPlayerChoiceUi(button.id);
+        const enemyPicked = getComputerChoiceUi();
+        const worl = playRound(picked, enemyPicked);
+        playRoundUi(worl);
+        scoreSystem(worl);
+        scoreSystemUi();
+
+        if (playerScore === 5 || opponentScore === 5) {
+            worlScreen.style.height = "100%";
+        }
+    });
+});
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "Rock" && computerSelection === "Rock") {
-        return "Tie"
+        return "Tie";
     } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        return "Lose"
+        return "Lose";
     } else if (playerSelection === "Rock" && computerSelection === "Scissor") {
-        return "Win"
+        return "Win";
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        return "Win"
+        return "Win";
     } else if (playerSelection === "Paper" && computerSelection === "Paper") {
-        return "Tie"
+        return "Tie";
     } else if (playerSelection === "Paper" && computerSelection === "Scissor") {
-        return "Lose"
+        return "Lose";
     } else if (playerSelection === "Scissor" && computerSelection === "Rock") {
-        return "Lose"
+        return "Lose";
     } else if (playerSelection === "Scissor" && computerSelection === "Paper") {
-        return "Win"
-    } else if (playerSelection === "Scissor" && computerSelection === "Scissor") {
-        return "Tie"
+        return "Win";
+    } else if (
+        playerSelection === "Scissor" &&
+        computerSelection === "Scissor"
+    ) {
+        return "Tie";
     }
 }
 
-function getPlayerChoice() {
-    const choose = prompt("What do you pick? r for rock, p for paper, s for scissor")
-
-    if (choose === "r") {
-        return "Rock"
-    } else if (choose === "p") {
-        return "Paper"
-    } else if (choose === "s") {
-        return "Scissor"
+function playRoundUi(playRound) {
+    if (playRound === "Win") {
+        worlDisplay.src = "./Assets/win.png";
     }
-}
-
-function getComputerChoice() {
-    let random = Math.floor(Math.random() * 3);
-
-    if (random === 0) return "Rock";
-    if (random === 1) return "Paper";
-    if (random === 2) return "Scissor";
+    if (playRound === "Lose") {
+        worlDisplay.src = "./Assets/lose.png";
+    }
+    if (playRound === "Tie") {
+        worlDisplay.src = "./Assets/tie.png";
+    }
 }
 
 function scoreSystem(worl) {
     if (worl === "Win") {
-        playerScore += 1
-        return `${playerScore} - ${opponentScore}`
+        playerScore += 1;
+        return `${playerScore} - ${opponentScore}`;
     } else if (worl === "Lose") {
-        opponentScore += 1
-        return `${playerScore} - ${opponentScore}`
+        opponentScore += 1;
+        return `${playerScore} - ${opponentScore}`;
     } else if (worl === "Tie") {
-        return `${playerScore} - ${opponentScore}`
+        return `${playerScore} - ${opponentScore}`;
     }
 }
 
-let playerScore = 0
-let opponentScore = 0
+function scoreSystemUi() {
+    if (playerScore === 1) scoreDisplay.src = "./Assets/1.png";
+    else if (playerScore === 2) scoreDisplay.src = "./Assets/2.png";
+    else if (playerScore === 3) scoreDisplay.src = "./Assets/3.png";
+    else if (playerScore === 4) scoreDisplay.src = "./Assets/4.png";
+    else if (playerScore === 5) scoreDisplay.src = "./Assets/5.png";
 
-for (i = 0; i < 11; i--) {
-    const playerSelection = getPlayerChoice();
-    const computerSelection = getComputerChoice();
-    console.log(`You picked ${playerSelection}, your opponent picked ${computerSelection}`)
-    const worl = playRound(playerSelection, computerSelection)
-    console.log(worl);
-    console.log(scoreSystem(worl))
-    
-    if (playerScore === 5) {
-        console.log("Youve Win")
-        document.getElementById("celebration").innerHTML = "You've Win"
-        break
-    } else if (opponentScore === 5) {
-        console.log("Youve Lose")
-        document.getElementById("celebration").innerHTML = "You've Lose"
-        break
+    if (opponentScore === 1) enemyScoreDisplay.src = "./Assets/1.png";
+    else if (opponentScore === 2) enemyScoreDisplay.src = "./Assets/2.png";
+    else if (opponentScore === 3) enemyScoreDisplay.src = "./Assets/3.png";
+    else if (opponentScore === 4) enemyScoreDisplay.src = "./Assets/4.png";
+    else if (opponentScore === 5) enemyScoreDisplay.src = "./Assets/5.png";
+}
+
+function getPlayerChoiceUi(choose) {
+    if (choose === "rock") {
+        pickedUi.src = "./Assets/rock.png";
+        return "Rock";
+    } else if (choose === "paper") {
+        pickedUi.src = "./Assets/paper.png";
+        return "Paper";
+    } else if (choose === "scissor") {
+        pickedUi.src = "./Assets/scissor.png";
+        return "Scissor";
+    }
+}
+
+function getComputerChoiceUi() {
+    let random = Math.floor(Math.random() * 3);
+
+    if (random === 0) {
+        enemyPickedUi.src = "./Assets/rock.png";
+        return "Rock";
+    }
+    if (random === 1) {
+        enemyPickedUi.src = "./Assets/paper.png";
+        return "Paper";
+    }
+    if (random === 2) {
+        enemyPickedUi.src = "./Assets/scissor.png";
+        return "Scissor";
     }
 }

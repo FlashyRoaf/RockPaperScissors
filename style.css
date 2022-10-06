@@ -1,0 +1,47 @@
+html, body, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(37, 37, 37);
+}
+
+.container {
+    text-align: center;
+}
+
+.worlScreen {
+    position: fixed;
+    overflow: hidden;
+    background-color: rgb(100, 100, 100);
+    width: 100%;
+    height: 0;
+    transition: 1s;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flex-direction {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-pick {
+    width: 10rem;
+    height: auto;
+}
+
+.imgDisplay {
+    width: 12rem;
+    height: auto;
+}
+
+.flex > .picker {
+    margin: 1rem;
+}

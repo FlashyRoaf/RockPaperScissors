@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissor</title>
 </head>
 <body>
-    <h1 id="celebration"></h1>
+    
+    <div class="container">
+        <div class="worlScreen" id="worlScreen">
+            <img class="imgDisplay worl" id="worl" src="./Assets/win.png" style="position: relative; top: 40%;">
+        </div>
+
+        <div class="flex">
+            <div class="flex-direction">
+                <img class="imgDisplay picked" id="picked" src="">
+                <img src="./Assets/0.png" class="imgDisplay score" id="scoreDisplay">
+            </div>
+            <img src="./Assets/vs.png" alt="" class="imgDisplay">
+            <div class="flex-direction">
+                <img class="imgDisplay enemyPicked" id="enemyPicked" src="">
+                <img src="./Assets/0.png" class="imgDisplay score" id="enemyScoreDisplay">
+            </div>
+        </div>
+
+        <img class="imgDisplay worl" id="worl">
+
+        <div class="flex">
+            <button class="picker" id="rock"><img src="./Assets/rock.png" alt="" class="img-pick"></button>
+            <button class="picker" id="paper"><img src="./Assets/paper.png" alt="" class="img-pick"></button>
+            <button class="picker" id="scissor"><img src="./Assets/scissor.png" alt="" class="img-pick"></button>
+        </div>
+    </div>
 
     <script src="./script.js"></script>
 </body>
