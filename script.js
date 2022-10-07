@@ -1,6 +1,6 @@
 const pickedUi = document.getElementById("picked");
 const enemyPickedUi = document.getElementById("enemyPicked");
-const worlDisplay = document.getElementById("worl");
+const worlDisplay = document.querySelectorAll("#worl");
 const scoreDisplay = document.getElementById("scoreDisplay");
 const enemyScoreDisplay = document.getElementById("enemyScoreDisplay");
 const worlScreen = document.getElementById("worlScreen");
@@ -51,13 +51,19 @@ function playRound(playerSelection, computerSelection) {
 
 function playRoundUi(playRound) {
     if (playRound === "Win") {
-        worlDisplay.src = "./Assets/win.png";
+        worlDisplay.forEach((worlDisplay) => {
+            worlDisplay.src = "./Assets/win.png";
+        });
     }
     if (playRound === "Lose") {
-        worlDisplay.src = "./Assets/lose.png";
+        worlDisplay.forEach((worlDisplay) => {
+            worlDisplay.src = "./Assets/lose.png";
+        });
     }
     if (playRound === "Tie") {
-        worlDisplay.src = "./Assets/tie.png";
+        worlDisplay.forEach((worlDisplay) => {
+            worlDisplay.src = "./Assets/tie.png";
+        });
     }
 }
 
